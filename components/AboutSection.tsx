@@ -41,17 +41,17 @@ export default function AboutSection() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Why Choose <span className="gradient-text">Sharaksh?</span>
+              Why Choose <span className="gradient-text">Arcwell Digital?</span>
             </h2>
             
             <p className="text-xl text-gray-600 mb-8">
               We're passionate about creating exceptional digital experiences that drive real business results. 
-              Our team combines technical expertise with creative vision to deliver websites and marketing campaigns 
+              Our team combines technical expertise with creative vision to deliver websites 
               that not only look amazing but perform exceptionally.
             </p>
 
             <p className="text-lg text-gray-600 mb-8">
-              With years of experience in web development and AI-powered marketing, we understand what it takes 
+              With years of experience in web development, we understand what it takes 
               to create solutions that stand out in today's competitive digital landscape.
             </p>
 

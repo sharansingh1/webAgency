@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Linkedin, Twitter, Github } from 'lucide-react'
+import { Mail, MapPin, Linkedin, Twitter, Github } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -7,9 +7,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-2xl font-bold mb-4">Sharaksh</h3>
+            <h3 className="text-2xl font-bold mb-4">Arcwell Digital</h3>
             <p className="text-gray-300 mb-6 max-w-md">
-              Creating custom high-quality websites and running AI-powered ad campaigns that deliver real results for your business.
+              Creating custom high-quality websites that deliver real results for your business.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -29,7 +29,6 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4">Services</h4>
             <ul className="space-y-2">
               <li><a href="#services" className="text-gray-300 hover:text-white transition-colors">Custom Websites</a></li>
-              <li><a href="#services" className="text-gray-300 hover:text-white transition-colors">AI Ad Campaigns</a></li>
               <li><a href="#services" className="text-gray-300 hover:text-white transition-colors">Web Design</a></li>
               <li><a href="#services" className="text-gray-300 hover:text-white transition-colors">Digital Marketing</a></li>
             </ul>
@@ -41,11 +40,7 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Mail size={16} className="text-primary-400" />
-                <span className="text-gray-300">hello@sharaksh.com</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone size={16} className="text-primary-400" />
-                <span className="text-gray-300">+1 (555) 123-4567</span>
+                <span className="text-gray-300">hello@arcwelldigital.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin size={16} className="text-primary-400" />
@@ -57,7 +52,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
           <p className="text-gray-400">
-            © 2024 Sharaksh. All rights reserved. Crafted with passion for excellence.
+            © 2024 Arcwell Digital. All rights reserved. Crafted with passion for excellence.
           </p>
         </div>
       </div>

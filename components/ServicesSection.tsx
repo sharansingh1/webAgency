@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Code, Zap, CheckCircle, ArrowRight, Monitor, Smartphone, Globe, BarChart3 } from 'lucide-react'
+import { Code, CheckCircle, ArrowRight, Monitor, Smartphone, Globe, Sparkles } from 'lucide-react'
 
 export default function ServicesSection() {
   const services = [
@@ -18,28 +18,13 @@ export default function ServicesSection() {
         "Cross-Browser Compatible"
       ],
       color: "from-blue-500 to-blue-600"
-    },
-    {
-      icon: <Zap size={32} className="text-primary-600" />,
-      title: "AI-Powered Ad Campaigns",
-      description: "Our AI-driven marketing campaigns are proven to increase reach and engagement. We use advanced algorithms to optimize your ad performance.",
-      features: [
-        "AI Optimization",
-        "Targeted Audiences",
-        "Real-time Analytics",
-        "A/B Testing",
-        "ROI Tracking",
-        "Multi-Platform Campaigns"
-      ],
-      color: "from-purple-500 to-purple-600"
     }
   ]
 
   const technologies = [
     { icon: <Monitor size={24} />, name: "React & Next.js" },
     { icon: <Smartphone size={24} />, name: "Mobile Responsive" },
-    { icon: <Globe size={24} />, name: "SEO Optimized" },
-    { icon: <BarChart3 size={24} />, name: "Analytics Ready" }
+    { icon: <Globe size={24} />, name: "SEO Optimized" }
   ]
 
   return (
@@ -62,7 +47,7 @@ export default function ServicesSection() {
         </motion.div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16 max-w-6xl mx-auto">
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -98,6 +83,47 @@ export default function ServicesSection() {
               </a>
             </motion.div>
           ))}
+          
+          {/* Coming Soon Service Box */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl shadow-lg p-8 border-2 border-dashed border-gray-300 relative overflow-hidden"
+          >
+            <div className="absolute top-4 right-4">
+              <span className="bg-primary-100 text-primary-700 text-xs font-semibold px-3 py-1 rounded-full">
+                Coming Soon
+              </span>
+            </div>
+            
+            <div className="flex items-center mb-6">
+              <div className="p-3 bg-white rounded-xl mr-4 shadow-sm">
+                <Sparkles size={32} className="text-gray-400" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-700">More Services</h3>
+            </div>
+            
+            <p className="text-gray-600 mb-6 text-lg">
+              We're constantly expanding our service offerings to better serve your business needs. New solutions are on the way!
+            </p>
+
+            <div className="space-y-3 mb-6">
+              <div className="flex items-center text-gray-500">
+                <div className="w-2 h-2 bg-gray-300 rounded-full mr-3"></div>
+                <span className="text-sm">Additional services launching soon</span>
+              </div>
+              <div className="flex items-center text-gray-500">
+                <div className="w-2 h-2 bg-gray-300 rounded-full mr-3"></div>
+                <span className="text-sm">Stay tuned for updates</span>
+              </div>
+            </div>
+
+            <div className="text-primary-600 font-semibold text-sm">
+              Check back soon for new offerings
+            </div>
+          </motion.div>
         </div>
 
         {/* Technology Stack */}
@@ -113,7 +139,7 @@ export default function ServicesSection() {
             <p className="text-gray-600">We use the latest tools and frameworks to deliver exceptional results</p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
             {technologies.map((tech, index) => (
               <motion.div
                 key={index}

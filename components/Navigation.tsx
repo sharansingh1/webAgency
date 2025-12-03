@@ -31,7 +31,7 @@ export default function Navigation() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <a href="#home" className="text-2xl font-bold gradient-text">
-              Sharaksh
+              Arcwell Digital
             </a>
           </div>
 

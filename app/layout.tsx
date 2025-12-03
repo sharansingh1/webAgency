@@ -5,13 +5,14 @@ import '../styles/globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Sharaksh - Custom High-Quality Websites & AI Marketing',
-  description: 'Professional custom website development and AI-powered ad campaigns that increase reach and drive results. Modern, premium web solutions for your business.',
-  keywords: 'custom websites, web development, AI marketing, digital marketing, business websites',
-  authors: [{ name: 'Sharaksh' }],
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  title: 'Arcwell Digital - Custom High-Quality Websites',
+  description: 'Professional custom website development that delivers exceptional results. Modern, premium web solutions for your business.',
+  keywords: 'custom websites, web development, digital marketing, business websites',
+  authors: [{ name: 'Arcwell Digital' }],
   openGraph: {
-    title: 'Sharaksh - Custom High-Quality Websites & AI Marketing',
-    description: 'Professional custom website development and AI-powered ad campaigns that increase reach and drive results.',
+    title: 'Arcwell Digital - Custom High-Quality Websites',
+    description: 'Professional custom website development that delivers exceptional results.',
     type: 'website',
   },
 }

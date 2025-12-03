@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send, CheckCircle, Clock, MessageCircle } from 'lucide-react'
+import { Mail, MapPin, Send, CheckCircle, Clock } from 'lucide-react'
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -16,50 +16,73 @@ export default function ContactSection() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     })
+    // Clear error when user starts typing
+    if (error) setError(null)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError(null)
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false)
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        service: '',
-        budget: '',
-        message: ''
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       })
-    }, 3000)
+
+      // Check if response is actually JSON
+      const contentType = response.headers.get('content-type')
+      if (!contentType || !contentType.includes('application/json')) {
+        const text = await response.text()
+        console.error('Non-JSON response:', text.substring(0, 200))
+        throw new Error('Server returned an invalid response. Please try again later.')
+      }
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message. Please try again.')
+      }
+
+      // Success!
+      setIsSubmitted(true)
+      
+      // Reset form after 5 seconds
+      setTimeout(() => {
+        setIsSubmitted(false)
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          service: '',
+          budget: '',
+          message: ''
+        })
+      }, 5000)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An unexpected error occurred. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const contactInfo = [
     {
       icon: <Mail size={24} className="text-primary-600" />,
       title: "Email Us",
-      details: "hello@sharaksh.com",
+      details: "arcwelldigital@gmail.com",
       description: "Send us an email anytime"
-    },
-    {
-      icon: <Phone size={24} className="text-primary-600" />,
-      title: "Call Us",
-      details: "+1 (555) 123-4567",
-      description: "Mon-Fri from 9am to 6pm"
     },
     {
       icon: <MapPin size={24} className="text-primary-600" />,
@@ -167,6 +190,11 @@ export default function ContactSection() {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {error && (
+                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                      <p className="text-sm font-medium">{error}</p>
+                    </div>
+                  )}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -228,8 +256,6 @@ export default function ContactSection() {
                       >
                         <option value="">Select a service</option>
                         <option value="website">Custom Website Development</option>
-                        <option value="marketing">AI Ad Campaigns</option>
-                        <option value="both">Both Services</option>
                         <option value="consultation">Consultation</option>
                       </select>
                     </div>

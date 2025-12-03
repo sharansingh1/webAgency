@@ -10,6 +10,102 @@ export default function HeroSection() {
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-primary-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{animationDelay: '2s'}}></div>
+        
+        {/* Subtle Arc/Lighting Design */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[80%] opacity-25 pointer-events-none">
+          <svg viewBox="0 0 1200 800" className="w-full h-full">
+            <defs>
+              <linearGradient id="arcGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="rgb(2, 132, 199)" stopOpacity="0.3" />
+                <stop offset="50%" stopColor="rgb(14, 165, 233)" stopOpacity="0.5" />
+                <stop offset="100%" stopColor="rgb(2, 132, 199)" stopOpacity="0.2" />
+              </linearGradient>
+              
+              {/* Lightning flash gradient - bright white center that moves */}
+              <linearGradient id="lightningFlash" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="rgb(14, 165, 233)" stopOpacity="0" />
+                <stop offset="40%" stopColor="rgb(14, 165, 233)" stopOpacity="0" />
+                <stop offset="47%" stopColor="rgb(14, 165, 233)" stopOpacity="0.9" />
+                <stop offset="50%" stopColor="rgb(255, 255, 255)" stopOpacity="1" />
+                <stop offset="53%" stopColor="rgb(14, 165, 233)" stopOpacity="0.9" />
+                <stop offset="60%" stopColor="rgb(14, 165, 233)" stopOpacity="0" />
+                <stop offset="100%" stopColor="rgb(14, 165, 233)" stopOpacity="0" />
+                <animateTransform
+                  attributeName="gradientTransform"
+                  type="translate"
+                  values="-600 0; 1800 0"
+                  dur="5s"
+                  repeatCount="indefinite"
+                />
+              </linearGradient>
+              
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+              
+              <filter id="lightningGlow">
+                <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            
+            {/* Base arc paths */}
+            <path
+              d="M 0 400 Q 300 200, 600 300 T 1200 400"
+              stroke="url(#arcGradient)"
+              strokeWidth="2"
+              fill="none"
+              filter="url(#glow)"
+              className="animate-pulse"
+              style={{animationDuration: '4s'}}
+            />
+            <path
+              d="M 0 450 Q 350 250, 650 350 T 1200 450"
+              stroke="url(#arcGradient)"
+              strokeWidth="1.5"
+              fill="none"
+              opacity="0.6"
+              filter="url(#glow)"
+              className="animate-pulse"
+              style={{animationDuration: '5s', animationDelay: '1s'}}
+            />
+            
+            {/* Lightning flash effect - main arc */}
+            <path
+              d="M 0 400 Q 300 200, 600 300 T 1200 400"
+              stroke="url(#lightningFlash)"
+              strokeWidth="7"
+              fill="none"
+              filter="url(#lightningGlow)"
+              opacity="0.85"
+            />
+            
+            {/* Lightning flash effect - secondary arc */}
+            <path
+              d="M 0 450 Q 350 250, 650 350 T 1200 450"
+              stroke="url(#lightningFlash)"
+              strokeWidth="6"
+              fill="none"
+              filter="url(#lightningGlow)"
+              opacity="0.75"
+            >
+              <animate
+                attributeName="opacity"
+                values="0.75;0.85;0.75"
+                dur="6s"
+                begin="2s"
+                repeatCount="indefinite"
+              />
+            </path>
+          </svg>
+        </div>
       </div>
 
       <div className="container-max section-padding relative z-10">
@@ -38,7 +134,7 @@ export default function HeroSection() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight"
             >
               Custom High-Quality
-              <span className="gradient-text block">Websites & AI Marketing</span>
+              <span className="gradient-text block">Websites</span>
             </motion.h1>
 
             <motion.p
@@ -47,7 +143,7 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl text-gray-600 mb-8 max-w-2xl"
             >
-              We create stunning, modern websites and run AI-powered ad campaigns that are proven to increase your reach and drive real business results.
+              We create stunning, modern websites that are proven to increase your reach and drive real business results.
             </motion.p>
 
             <motion.div
