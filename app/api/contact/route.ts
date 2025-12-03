@@ -5,8 +5,8 @@ export const runtime = 'nodejs'
 
 export async function POST(request: NextRequest) {
   try {
-    // Get API key - Next.js automatically loads from .env.local
-    const apiKey = process.env.RESEND_API_KEY || 're_Cwhja2dZ_HfPN5VKJ6bwqAJ6cpPfDFv3f'
+    // Get API key from environment variables
+    const apiKey = process.env.RESEND_API_KEY
     
     if (!apiKey) {
       return NextResponse.json(
